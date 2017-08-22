@@ -9,6 +9,8 @@
             this.$state = $state;
             this.tiposDocumentosService = tiposDocumentosService;
             this.ciudadesService = ciudadesService;
+            this.selectedItem  = null;
+            this.searchText    = null;
         }
         $onInit() {
             this.departamentosService.query().$promise
@@ -51,6 +53,17 @@
 
         imageLoad($fileContent) {
             this.image = $fileContent;
+        }
+
+
+        querySearch(dato){
+
+          return this.ciudadesService.getCiudades({ nombre:dato }).$promise
+              .then(response => {
+                  return response;
+              })
+              .catch(err => console.error(err));
+
         }
 
     }
